@@ -1,0 +1,15 @@
+doctype html
+html
+    head
+        meta(charset="utf-8")
+        title Web2.0 SignIn
+        link(rel="stylesheet" href="./stylesheets/signin.css")
+        link(rel="stylesheet" href="./stylesheets/index.css")
+    body
+        div#container
+            h1 登录
+            form#login(action="/api/login" method="POST" enctype="application/json")
+                input(type="text" name="name" placeholder="用户名" maxlength="18")
+                input(type="password" name="password" placeholder="密码" maxlength="18")
+                input.button(type="submit" value="登录")
+            a.button(href="/regist") 注册

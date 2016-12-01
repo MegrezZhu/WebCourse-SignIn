@@ -1,0 +1,14 @@
+a {
+    text-decoration: none;
+}
+
+#container {
+    display: block;
+    margin: 200px auto;
+    width: 350px;
+}
+
+input {
+    margin-top: 20px;
+    height: 50px;
+}

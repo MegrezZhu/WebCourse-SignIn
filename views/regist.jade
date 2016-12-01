@@ -3,6 +3,7 @@ html
     head
         meta(charset="utf-8")
         title 注册
+        link(rel="stylesheet" href="./stylesheets/signin.css")
         link(rel="stylesheet" href="./stylesheets/regist.css")
         link(rel="icon" href="./img/favicon.jpg")
         script(type="text/javascript" src="./javascripts/lib/jquery.js")
@@ -12,10 +13,16 @@ html
     body
         div#container
             h1 注册
-            form(method="POST")
+            form(method="POST" enctype="application/json")
                 div#group-inputs
                     div.input-container
                         input(type="text" name="name" placeholder="姓名" autocomplete="off" maxlength="18")
+                        div.error-info error
+                    div.input-container
+                        input(type="password" name="password" placeholder="密码" autocomplete="off" maxlength="12")
+                        div.error-info error
+                    div.input-container
+                        input(type="password" name="password2" placeholder="重复密码" autocomplete="off" maxlength="12")
                         div.error-info error
                     div.input-container
                         input(type="text" name="id" placeholder="学号" autocomplete="off" maxlength="18")
@@ -25,9 +32,6 @@ html
                         div.error-info error
                     div.input-container
                         input(type="text" name="mail" placeholder="邮箱" autocomplete="off" maxlength="18")
-                        div.error-info error
-                    div.input-container
-                        input(type="text" name="name" placeholder="姓名" autocomplete="off")
                         div.error-info error
                 p
                     input.button(type="reset" value="重置")

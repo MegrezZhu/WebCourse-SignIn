@@ -40,11 +40,29 @@
         } else {
             callback("name", false, "用户名不合法");
         }
+    },
+    password: function(password, callback) {
+        if (!password) return;
+        if (password.match(/^[0-9A-Za-z-_]{6,12}$/)) {
+            callback("password", true);
+        } else {
+            let errmsg;
+            if (password.length < 6 || password.length > 12) errmsg = "密码应为6-12位";
+            if (!_.every(password, char => char.match(/[0-9A-Za-z-_]/))) errmsg = "非法字符";
+            callback("password", false, errmsg);
+        }
+    },
+    password2: function(password2, callback) {
+        if (!password2) return;
+        let password = $("input[name='password']").val();
+        callback("password2", password === password2, "两次输入不同");
     }
 };
 
 function ajaxCheck(argName, arg, callback) {
-    $.post(`/check/${argName}`, arg, function (res) {
+    let data = {};
+    data[argName] = arg;
+    $.post(`api/check/${argName}`, data, function (res) {
         if (res === 'ok') callback(true);
         else callback(false);
     });

@@ -359,7 +359,7 @@
    * with incorrect `typeof` results.
    *
    * @private
-   * @param {*} value The value to check.
+   * @param {*} value The value to formatCheck.
    * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
    */
   function baseIsFunction(value) {
@@ -544,7 +544,7 @@
    * Checks if `value` is object-like.
    *
    * @private
-   * @param {*} value The value to check.
+   * @param {*} value The value to formatCheck.
    * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
    */
   function isObjectLike(value) {
@@ -722,7 +722,7 @@
     /** Used to resolve the decompiled source of functions. */
     var fnToString = Function.prototype.toString;
 
-    /** Used to check objects for own properties. */
+    /** Used to formatCheck objects for own properties. */
     var hasOwnProperty = objectProto.hasOwnProperty;
 
     /** Used to generate unique IDs. */
@@ -1152,7 +1152,7 @@
      * @private
      * @name has
      * @memberOf _.memoize.Cache
-     * @param {string} key The key of the entry to check.
+     * @param {string} key The key of the entry to formatCheck.
      * @returns {boolean} Returns `true` if an entry for `key` exists, else `false`.
      */
     function mapHas(key) {
@@ -1320,7 +1320,7 @@
      * @private
      * @param {Array} array The array to iterate over.
      * @param {Function} predicate The function invoked per iteration.
-     * @returns {boolean} Returns `true` if all elements pass the predicate check,
+     * @returns {boolean} Returns `true` if all elements pass the predicate formatCheck,
      *  else `false`.
      */
     function arrayEvery(array, predicate) {
@@ -1482,7 +1482,7 @@
      * @private
      * @param {Array} array The array to iterate over.
      * @param {Function} predicate The function invoked per iteration.
-     * @returns {boolean} Returns `true` if any element passes the predicate check,
+     * @returns {boolean} Returns `true` if any element passes the predicate formatCheck,
      *  else `false`.
      */
     function arraySome(array, predicate) {
@@ -1849,7 +1849,7 @@
      * @private
      * @param {Array|Object|string} collection The collection to iterate over.
      * @param {Function} predicate The function invoked per iteration.
-     * @returns {boolean} Returns `true` if all elements pass the predicate check,
+     * @returns {boolean} Returns `true` if all elements pass the predicate formatCheck,
      *  else `false`
      */
     function baseEvery(collection, predicate) {
@@ -2576,7 +2576,7 @@
      * @private
      * @param {Array|Object|string} collection The collection to iterate over.
      * @param {Function} predicate The function invoked per iteration.
-     * @returns {boolean} Returns `true` if any element passes the predicate check,
+     * @returns {boolean} Returns `true` if any element passes the predicate formatCheck,
      *  else `false`.
      */
     function baseSome(collection, predicate) {
@@ -4068,7 +4068,7 @@
      * Checks if `value` is array-like.
      *
      * @private
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
      */
     function isArrayLike(value) {
@@ -4079,7 +4079,7 @@
      * Checks if `value` is a valid array-like index.
      *
      * @private
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
      * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
      */
@@ -4116,7 +4116,7 @@
      * Checks if `value` is a property name and not a property path.
      *
      * @private
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @param {Object} [object] The object to query keys on.
      * @returns {boolean} Returns `true` if `value` is a property name, else `false`.
      */
@@ -4136,7 +4136,7 @@
      * Checks if `func` has a lazy counterpart.
      *
      * @private
-     * @param {Function} func The function to check.
+     * @param {Function} func The function to formatCheck.
      * @returns {boolean} Returns `true` if `func` has a lazy counterpart, else `false`.
      */
     function isLaziable(func) {
@@ -4159,7 +4159,7 @@
      * **Note:** This function is based on [`ToLength`](http://ecma-international.org/ecma-262/6.0/#sec-tolength).
      *
      * @private
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
      */
     function isLength(value) {
@@ -4170,7 +4170,7 @@
      * Checks if `value` is suitable for strict equality comparisons, i.e. `===`.
      *
      * @private
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` if suitable for strict
      *  equality comparisons, else `false`.
      */
@@ -6220,7 +6220,7 @@
      * @param {Function|Object|string} [predicate=_.identity] The function invoked
      *  per iteration.
      * @param {*} [thisArg] The `this` binding of `predicate`.
-     * @returns {boolean} Returns `true` if all elements pass the predicate check,
+     * @returns {boolean} Returns `true` if all elements pass the predicate formatCheck,
      *  else `false`.
      * @example
      *
@@ -7017,7 +7017,7 @@
      * @param {Function|Object|string} [predicate=_.identity] The function invoked
      *  per iteration.
      * @param {*} [thisArg] The `this` binding of `predicate`.
-     * @returns {boolean} Returns `true` if any element passes the predicate check,
+     * @returns {boolean} Returns `true` if any element passes the predicate formatCheck,
      *  else `false`.
      * @example
      *
@@ -8456,7 +8456,7 @@
      * @static
      * @memberOf _
      * @category Lang
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
      * @example
      *
@@ -8477,7 +8477,7 @@
      * @static
      * @memberOf _
      * @category Lang
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
      * @example
      *
@@ -8497,7 +8497,7 @@
      * @static
      * @memberOf _
      * @category Lang
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
      * @example
      *
@@ -8517,7 +8517,7 @@
      * @static
      * @memberOf _
      * @category Lang
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
      * @example
      *
@@ -8537,7 +8537,7 @@
      * @static
      * @memberOf _
      * @category Lang
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is a DOM element, else `false`.
      * @example
      *
@@ -8646,7 +8646,7 @@
      * @static
      * @memberOf _
      * @category Lang
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is an error object, else `false`.
      * @example
      *
@@ -8668,7 +8668,7 @@
      * @static
      * @memberOf _
      * @category Lang
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is a finite number, else `false`.
      * @example
      *
@@ -8697,7 +8697,7 @@
      * @static
      * @memberOf _
      * @category Lang
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
      * @example
      *
@@ -8721,7 +8721,7 @@
      * @static
      * @memberOf _
      * @category Lang
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is an object, else `false`.
      * @example
      *
@@ -8794,7 +8794,7 @@
      * @static
      * @memberOf _
      * @category Lang
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is `NaN`, else `false`.
      * @example
      *
@@ -8812,7 +8812,7 @@
      */
     function isNaN(value) {
       // An `NaN` primitive is the only value that is not equal to itself.
-      // Perform the `toStringTag` check first to avoid errors with some host objects in IE.
+      // Perform the `toStringTag` formatCheck first to avoid errors with some host objects in IE.
       return isNumber(value) && value != +value;
     }
 
@@ -8822,7 +8822,7 @@
      * @static
      * @memberOf _
      * @category Lang
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is a native function, else `false`.
      * @example
      *
@@ -8848,7 +8848,7 @@
      * @static
      * @memberOf _
      * @category Lang
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is `null`, else `false`.
      * @example
      *
@@ -8871,7 +8871,7 @@
      * @static
      * @memberOf _
      * @category Lang
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
      * @example
      *
@@ -8898,7 +8898,7 @@
      * @static
      * @memberOf _
      * @category Lang
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
      * @example
      *
@@ -8945,7 +8945,7 @@
      * @static
      * @memberOf _
      * @category Lang
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
      * @example
      *
@@ -8965,7 +8965,7 @@
      * @static
      * @memberOf _
      * @category Lang
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
      * @example
      *
@@ -8985,7 +8985,7 @@
      * @static
      * @memberOf _
      * @category Lang
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
      * @example
      *
@@ -9005,7 +9005,7 @@
      * @static
      * @memberOf _
      * @category Lang
-     * @param {*} value The value to check.
+     * @param {*} value The value to formatCheck.
      * @returns {boolean} Returns `true` if `value` is `undefined`, else `false`.
      * @example
      *
@@ -9559,7 +9559,7 @@
      * @memberOf _
      * @category Object
      * @param {Object} object The object to query.
-     * @param {Array|string} path The path to check.
+     * @param {Array|string} path The path to formatCheck.
      * @returns {boolean} Returns `true` if `path` is a direct property, else `false`.
      * @example
      *
@@ -10101,7 +10101,7 @@
      * @static
      * @memberOf _
      * @category Number
-     * @param {number} n The number to check.
+     * @param {number} n The number to formatCheck.
      * @param {number} [start=0] The start of the range.
      * @param {number} end The end of the range.
      * @returns {boolean} Returns `true` if `n` is in the range, else `false`.
@@ -12320,7 +12320,7 @@
   // Export lodash.
   var _ = runInContext();
 
-  // Some AMD build optimizers like r.js check for condition patterns like the following:
+  // Some AMD build optimizers like r.js formatCheck for condition patterns like the following:
   if (typeof define == 'function' && typeof define.amd == 'object' && define.amd) {
     // Expose lodash to the global object when an AMD loader is present to avoid
     // errors in cases where lodash is loaded by a script tag and not intended

@@ -25,7 +25,7 @@ function errHandler(id, flag, msg) {
 function changeStatus(id, status) {
     let _this = $("input[name='" + id + "']");
     _this.attr("status", status);
-    if ($('input[status="ok"]').length === 4) {
+    if ($('input[status="ok"]').length === 6) {
         $('input[type="submit"]').removeAttr("disabled");
     } else {
         $('input[type="submit"]').attr("disabled", "disabled");
@@ -39,7 +39,7 @@ function reset() {
 }
 
 $(function () {
-    let input = $("input[type='text']");
+    let input = $(".input-container input");
     input.attr("status", "normal");
     input.focus(reset);
     input.blur(function () {
