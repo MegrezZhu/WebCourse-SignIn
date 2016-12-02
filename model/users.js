@@ -11,7 +11,7 @@ class User {
         this.phone = phone;
         this.mail = mail;
         this.session = secure.encrypt(`${name}:${password}`);
-        this.password = secure.encryptMD5(password);
+        this.password = secure.encryptMD5(password).result;
     }
 }
 
@@ -74,7 +74,8 @@ const userList = new class {
     }
 
     login(name, password) {
-        let _password = secure.encryptMD5(password);
+        let _password = secure.encryptMD5(password).result;
+        // console.log(name, password, _password);
         return this.getUser({name: name, password: _password});
     }
 

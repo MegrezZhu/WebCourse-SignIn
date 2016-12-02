@@ -41,7 +41,7 @@ h1 {
     background-color: rgb(55, 151, 210);
 }
 
-.button[disabled="disabled"], .buttonp[disabled="disabled"]:hover {
+.button[disabled="disabled"], .button[disabled="disabled"]:hover {
     background-color: gray;
 }
 
@@ -63,4 +63,8 @@ input[type="text"]:focus, input[type="password"]:focus{
 
 input[type="text"]::-webkit-input-placeholder, input[type="password"]::-webkit-input-placeholder {
     color: #CCCCCC;
+}
+
+input[type="submit"] {
+    cursor: pointer;
 }

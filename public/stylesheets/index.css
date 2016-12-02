@@ -12,3 +12,23 @@ input {
     margin-top: 20px;
     height: 50px;
 }
+
+/*
+    override pre-defined style in signin.css
+*/
+.button[disabled="disabled"] {
+    background-color: rgb(15, 136, 235);
+    cursor: default;
+}
+
+.button[disabled="disabled"]:hover {
+    background-color: rgb(15, 136, 235);
+}
+
+.button[disabled="disabled"]:active {
+    background-color: rgb(15, 136, 235);
+}
+
+.button.error, .button.error:hover {
+    background-color: #FF6699;
+}

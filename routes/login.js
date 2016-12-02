@@ -20,7 +20,7 @@ router
                      }
                  });
         } else
-            res.end('Invalid data');
+            res.end('invalid');
     });
 
 module.exports = router;

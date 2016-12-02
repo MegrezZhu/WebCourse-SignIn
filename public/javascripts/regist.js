@@ -1,6 +1,4 @@
-/**
- * Created by i4908 on 2016/11/9.
- */
+'use strict';
 
 function clearErr(id) {
     //console.log($("#err-info p[name='" + id + "']"));
@@ -45,11 +43,26 @@ $(function () {
     input.blur(function () {
         checkMethod[$(this).attr("name")]($(this).val(), errHandler);
     });
-    $('input[type="reset"]').click((function(){
+    $('input[type="reset"]').click((function () {
         let $inputs = $('input[type="text"]');
-        return function() {
-            $inputs.each(reset);
+        return function () {
+            $inputs.each(function () {
+                reset.call(this);
+                if (this.runningAjax)
+                    this.runningAjax.abort();
+            });
             $('input[type="submit"]').attr("disabled", "disabled");
         };
     })());
+    $('input[type="submit"]').click(encrypt);
 });
+
+function encrypt() {
+    $('input[type="password"]').each(function () {
+        let $input = $(this);
+        let password = $input.val();
+        password = CryptoJS.MD5(password).toString();
+        password = CryptoJS.MD5(password).toString();
+        $input.val(password);
+    });
+}

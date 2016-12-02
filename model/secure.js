@@ -12,7 +12,7 @@ const encrypt = function (data, key) {
 
 const encryptMD5 = function (data) {
     let gen = crypto.createHash('md5');
-    gen.update('md5');
+    gen.update(data);
     let result = gen.digest('hex');
     return {result};
 };
@@ -21,10 +21,8 @@ const check = function () {
 
 };
 
-if (typeof module === 'object') {
-    module.exports = {
-        encrypt,
-        encryptMD5,
-        check
-    };
-}
+module.exports = {
+    encrypt,
+    encryptMD5,
+    check
+};

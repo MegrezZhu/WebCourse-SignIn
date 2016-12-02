@@ -62,7 +62,7 @@
 function ajaxCheck(argName, arg, callback) {
     let data = {};
     data[argName] = arg;
-    $.post(`api/check/${argName}`, data, function (res) {
+    $(`input[name="${argName}"]`)[0].runningAjax = $.post(`api/check/${argName}`, data, function (res) {
         if (res === 'ok') callback(true);
         else callback(false);
     });
