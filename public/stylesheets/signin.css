@@ -2,11 +2,14 @@ body {
     background-image: url(../img/White-Wallpaper-2-2.jpg);
 }
 
-.right.floated.button::after {
-    visibility: hidden;
-    display: block;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0;
+body > .grid {
+    height: 100%;
+}
+
+.column {
+    max-width: 550px;
+}
+
+.input:-webkit-autofill {
+    background-color: transparent;
 }

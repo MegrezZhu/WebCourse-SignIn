@@ -1,32 +1,30 @@
 'use strict';
 
 $(function () {
-    let logger = new ErrorLogger;
+    let ctrl = new UIController;
 
-    $('input[type="text"], input[type="password"]').focus(logger.reset.bind(logger));
+    $('input[type="text"], input[type="password"]').focus(ctrl.reset.bind(ctrl));
 
-    let $submit = $('input[type="submit"]');
-    $submit.click(function (event) {
-        event.preventDefault();
-        let $this = $(this);
-        if (checkBlank()) {
-            $this.attr("disabled", "true")
-                 .toggleClass('loading');
-            let originPassword = encrypt();
-            $.post('/api/login', getFormData($('form').eq(0)))
-             .then(function (data) {
-                 logger.reset();
-                 if (data === 'ok')
-                     location.reload();
-                 else {
-                     logger.setError('用户名或密码错误');
-                     $('input[type="password"]').val(originPassword);
-                 }
-             });
-        } else
-            logger.setError('用户名与密码不能为空');
-        $('.ui.dimmable').toggleClass('dimmed');
-    });
+    $('#login-button')
+        .click(function (event) {
+            event.preventDefault();
+            let $this = $(this);
+            if (checkBlank()) {
+                ctrl.toggle();
+                let originPassword = encrypt();
+                $.post('/api/login', getFormData($('form').eq(0)))
+                 .then(function (data) {
+                     ctrl.toggle();
+                     if (data === 'ok')
+                         location.reload();
+                     else {
+                         ctrl.setError('用户名或密码错误');
+                         $('input[type="password"]').val(originPassword);
+                     }
+                 });
+            } else
+                ctrl.setError('用户名与密码不能为空');
+        });
 });
 
 function encrypt() {
@@ -56,26 +54,33 @@ function checkBlank() {
     return !!$('input[type="text"]').val() && !!$('input[type="password"]').val();
 }
 
-class ErrorLogger {
+class UIController {
     constructor() {
-        this.elem = $('input[type="submit"]');
+        this.button = $('#login-button');
     }
 
     setError(msg) {
-        this.elem
-            .val(msg)
+        this.button
+            .text(msg)
             .removeClass('blue')
             .addClass('red')
             .attr('disabled', 'true');
         this.timeflag = setTimeout(this.reset.bind(this), 1000);
+        return this;
     }
 
     reset() {
         if (this.timeflag) clearTimeout(this.timeflag);
-        this.elem
-            .val('登录')
+        this.button
+            .text('登录')
             .removeClass('red')
             .addClass('blue')
             .removeAttr('disabled');
+        return this;
+    }
+
+    toggle() {
+        this.button.toggleClass('loading');
+        return this;
     }
 }

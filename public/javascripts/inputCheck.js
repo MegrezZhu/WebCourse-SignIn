@@ -1,69 +1,66 @@
-﻿let checkMethod = {
-    id: function (id, callback) {
-        if (!id) return;
+﻿'use strict';
+
+let checkMethod = {
+    id: function (id) {
+        if (!id) return Promise.resolve();
         if (!isNaN(id)) {
-            if (id.length !== 8)
-                callback("id", false, "学号应为8位数字");
+            if (id.length !== 8) return Promise.reject("学号应为8位数字");
             else {
-                if (id[0] === '0') callback("id", false, "学号不能以0开头");
-                else ajaxCheck("id", id, _.bind(callback, null, "id", _, "学号已注册"));
+                if (id[0] === '0') return Promise.reject("学号不能以0开头");
+                else
+                    return ajaxCheck("id", id).catch(() => Promise.reject("学号已注册"));
             }
-        } else {
-            callback("id", false, "学号应为8位数字");
-        }
+        } else
+            return Promise.reject("学号应为8位数字");
     },
-    phone: function (phone, callback) {
-        if (!phone) return;
+    phone: function (phone) {
+        if (!phone) return Promise.resolve();
         if (!isNaN(phone)) {
-            if (phone.length !== 11)
-                callback("phone", false, "电话应为11位数字");
+            if (phone.length !== 11) return Promise.reject("电话应为11位数字");
             else {
-                if (phone[0] === '0') callback("phone", false, "电话不能以0开头");
-                else ajaxCheck("phone", phone, _.bind(callback, null, "phone", _, "电话已注册"));
+                if (phone[0] === '0') return Promise.reject("电话不能以0开头");
+                else return ajaxCheck("phone", phone).catch(() => Promise.reject("电话已注册"));
             }
-        } else {
-            callback("phone", false, "电话应为11位数字");
-        }
+        } else
+            return Promise.reject("电话应为11位数字");
     },
-    mail: function (mail, callback) {
-        if (!mail) return;
+    mail: function (mail) {
+        if (!mail) return Promise.resolve();
         if (mail.match(/^[a-zA-Z0-9_\\-]+@(([a-zA-Z0-9_\-])+\.)+[a-zA-Z]{2,4}$/)) {
-            ajaxCheck("mail", mail, _.bind(callback, null, "mail", _, "邮箱已注册"));
-        } else {
-            callback("mail", false, "邮箱格式不正确");
-        }
+            return ajaxCheck("mail", mail).catch(() => Promise.reject("邮箱已注册"));
+        } else
+            return Promise.reject("邮箱格式不正确");
     },
-    name: function (name, callback) {
-        if (!name) return;
+    name: function (name) {
+        if (!name) return Promise.resolve();
         if (name.match(/^[a-zA-Z][a-zA-Z0-9_]{5,17}$/)) {
-            ajaxCheck("name", name, _.bind(callback, null, "name", _, "用户名已注册"));
-        } else {
-            callback("name", false, "用户名不合法");
-        }
+            return ajaxCheck("name", name).catch(() => Promise.reject("用户名已注册"));
+        } else
+            return Promise.reject("用户名不合法");
     },
-    password: function(password, callback) {
-        if (!password) return;
+    password: function (password) {
+        if (!password) return Promise.resolve();
         if (password.match(/^[0-9A-Za-z-_]{6,12}$/)) {
-            callback("password", true);
+            return Promise.resolve();
         } else {
             let errmsg;
             if (password.length < 6 || password.length > 12) errmsg = "密码应为6-12位";
             if (!_.every(password, char => char.match(/[0-9A-Za-z-_]/))) errmsg = "非法字符";
-            callback("password", false, errmsg);
+            return Promise.reject(errmsg);
         }
     },
-    password2: function(password2, callback) {
-        if (!password2) return;
+    password2: function (password2) {
+        if (!password2) return Promise.resolve();
         let password = $("input[name='password']").val();
-        callback("password2", password === password2, "两次输入不同");
+        if (password === password2) return Promise.resolve();
+        return Promise.reject("两次输入不同");
     }
 };
 
-function ajaxCheck(argName, arg, callback) {
+function ajaxCheck(argName, arg) {
     let data = {};
     data[argName] = arg;
-    $(`input[name="${argName}"]`)[0].runningAjax = $.post(`api/check/${argName}`, data, function (res) {
-        if (res === 'ok') callback(true);
-        else callback(false);
-    });
+    let ajax = $.post(`api/check/${argName}`, data);
+    $(`input[name="${argName}"]`)[0].runningAjax = ajax;
+    return ajax.then(res => res === 'ok' ? Promise.resolve() : Promise.reject());
 }

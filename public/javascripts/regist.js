@@ -1,57 +1,44 @@
 'use strict';
 
-function clearErr(id) {
-    //console.log($("#err-info p[name='" + id + "']"));
-    $(`input[name="${id}"] + .error-info`)
-        .css('opacity', '0')
-        .css('transform', 'scaleX(0)');
-}
-
-function errHandler(id, flag, msg) {
-    if (flag) changeStatus(id, "ok");
-    else {
-        changeStatus(id, "wrong");
-        if (msg) {
-            let info = $('input[name="' + id + '"] + .error-info');
-            info.text(msg);
-            info.css('opacity', '1')
-                .css('transform', 'scaleX(1)');
-        }
-    }
-}
-
-function changeStatus(id, status) {
-    let _this = $("input[name='" + id + "']");
-    _this.attr("status", status);
-    if ($('input[status="ok"]').length === 6) {
-        $('input[type="submit"]').removeAttr("disabled");
-    } else {
-        $('input[type="submit"]').attr("disabled", "disabled");
-    }
+function errHandler(msg) {
+    this.next()
+        .text(msg);
+    this.parents('.ui.field')
+        .addClass('error')
 }
 
 function reset() {
-    let $ele = $(this);
-    $ele.attr("status", "normal");
-    clearErr($ele.attr("name"));
+    let $this = $(this);
+    if (this.runningAjax) this.runningAjax.abort();
+    $this.parents('.ui.field')
+         .removeClass('error')
+         .removeClass('success');
 }
 
 $(function () {
-    let input = $(".input-container input");
-    input.attr("status", "normal");
+    let input = $('input[type="text"], input[type="password"]');
     input.focus(reset);
     input.blur(function () {
-        checkMethod[$(this).attr("name")]($(this).val(), errHandler);
+        let $this = $(this);
+        if (!$this.val()) return;
+        checkMethod[$this.attr('name')]($this.val())
+            .then(() => {
+                $this.parents('.ui.field').addClass('success');
+                if ($('.ui.field.success').length === 6) $('#regist-button').removeClass('disabled');
+            })
+            .catch(function (msg) {
+                errHandler.call($this, msg);
+            });
     });
-    $('input[type="reset"]').click((function () {
-        let $inputs = $('input[type="text"]');
+    $('#reset-button').click((function () {
+        let $inputs = $('input[type="text"], input[type="password"]');
         return function () {
             $inputs.each(function () {
                 reset.call(this);
                 if (this.runningAjax)
                     this.runningAjax.abort();
             });
-            $('input[type="submit"]').attr("disabled", "disabled");
+            $('#submit-button').addClass('disabled');
         };
     })());
     $('input[type="submit"]').click(encrypt);
