@@ -61,8 +61,8 @@ function encrypt() {
     $('input[type="password"]').each(function () {
         let $input = $(this);
         let password = $input.val();
-        password = CryptoJS.MD5(password).toString();
-        password = CryptoJS.MD5(password).toString();
+        password = Crypto.MD5(password).toString();
+        password = Crypto.MD5(password).toString();
         $input.val(password);
     });
 }

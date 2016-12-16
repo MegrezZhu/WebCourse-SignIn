@@ -3,17 +3,52 @@ html
     head
         meta(charset="utf-8")
         title Web2.0 SignIn
-        link(rel="stylesheet" href="./stylesheets/signin.css")
-        link(rel="stylesheet" href="./stylesheets/index.css")
+        //link(rel="stylesheet" href="./stylesheets/signin.css")
+        //link(rel="stylesheet" href="./stylesheets/index.css")
         script(type="text/javascript" src="./javascripts/lib/crypto-core.js")
         script(type="text/javascript" src="./javascripts/lib/crypto-md5.js")
         script(type="text/javascript" src="./javascripts/lib/jquery.js")
+        link(rel="stylesheet" type="text/css" href="./bower_components/semantic/dist/semantic.css")
+        link(rel="stylesheet" href="./stylesheets/signin.css")
+        script(type="text/javascript" src="./bower_components/jquery/dist/jquery.min.js")
+        script(type="text/javascript" src="./bower_components/semantic/dist/semantic.js")
+        script(type="text/javascript" src="./bower_components/cryptojs/lib/Crypto.js")
+        script(type="text/javascript" src="./bower_components/cryptojs/lib/MD5.js")
         script(type="text/javascript" src="./javascripts/login.js")
-    body
-        div#container
-            h1 登录
-            form#login(action="/api/login" method="POST" enctype="application/json")
-                input(type="text" name="name" placeholder="用户名" maxlength="18")
-                input(type="password" name="password" placeholder="密码" autocomplete="off" maxlength="12")
-                input.button(type="submit" value="登录")
-            a.button(href="/regist") 注册
+        style( type = "text/css")
+            | body {
+            |   background-color: #DADADA;
+            | }
+            | body > .grid {
+            |   height: 100%;
+            | }
+            | .image {
+            |   margin-top: -100px;
+            | }
+            | .column {
+            |    max-width: 550px;
+            | }
+body
+    div.ui.middle.aligned.center.aligned.grid
+        div.column.center.aligned
+            h2.ui.center.aligned.icon.header
+                i.users.grey.icon
+            form.ui.form#login(action="/api/login" method="POST" enctype="application/json")
+                div.ui.large.raised.dimmable.segment
+                    div.ui.field
+                        div.ui.left.icon.huge.input
+                            i.user.icon
+                            input(type="text" name="name" placeholder="用户名" maxlength="18")
+                    div.ui.field
+                        div.ui.left.icon.huge.input
+                            i.lock.icon
+                            input(type="password" name="password" placeholder="密码" maxlength="18")
+                    div.ui.divider
+                    div.ui.field
+                        input.ui.huge.blue.fluid.submit.button(type="submit" value="登录")
+                    div.field
+                        a.ui.huge.fluid.teal.button(href="./regist") 注册
+                    a.ui.basic.icon.button(href="https://github.com/MegrezZhu")
+                        i.ui.big.github.icon
+                    div.ui.simple.inverted.dimmer
+                        div.ui.big.text.loader Loading

@@ -11,7 +11,7 @@ $(function () {
         let $this = $(this);
         if (checkBlank()) {
             $this.attr("disabled", "true")
-                 .val('......');
+                 .toggleClass('loading');
             let originPassword = encrypt();
             $.post('/api/login', getFormData($('form').eq(0)))
              .then(function (data) {
@@ -25,6 +25,7 @@ $(function () {
              });
         } else
             logger.setError('用户名与密码不能为空');
+        $('.ui.dimmable').toggleClass('dimmed');
     });
 });
 
@@ -32,20 +33,22 @@ function encrypt() {
     let $input = $('input[type="password"]')
     let password = $input.val(),
         _password = password;
-    password = CryptoJS.MD5(password).toString();
-    password = CryptoJS.MD5(password).toString();
+    password = Crypto.MD5(password).toString();
+    password = Crypto.MD5(password).toString();
     $input.val(password);
+    console.log("password encrypted.");
     return _password;
 }
 
 function getFormData(form) {
     let $form = $(form);
     let data = {isAjax: true};
-    $form.children('input[type="text"], input[type="password"]')
+    $form.find('input[type="text"], input[type="password"]')
          .each(function () {
              let $this = $(this);
              data[$this.attr('name')] = $this.val();
          });
+    //console.log(data);
     return data;
 }
 
@@ -61,14 +64,18 @@ class ErrorLogger {
     setError(msg) {
         this.elem
             .val(msg)
-            .addClass('error')
+            .removeClass('blue')
+            .addClass('red')
             .attr('disabled', 'true');
+        this.timeflag = setTimeout(this.reset.bind(this), 1000);
     }
 
     reset() {
+        if (this.timeflag) clearTimeout(this.timeflag);
         this.elem
             .val('登录')
-            .removeClass('error')
+            .removeClass('red')
+            .addClass('blue')
             .removeAttr('disabled');
     }
 }
