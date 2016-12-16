@@ -3,10 +3,11 @@ html
     head
         meta(charset="utf-8")
         title 详情
+        link(rel="stylesheet" href="./bower_components/semantic/dist/semantic.css")
         link(rel="stylesheet" href="./stylesheets/signin.css")
         link(rel="stylesheet" href="./stylesheets/detail.css")
     body
-        div#container
+        //div#container
             div#wrapper
                 h2 用户详情
                 - if (error)
@@ -24,3 +25,32 @@ html
                     div 邮箱
                     div #{user.mail}
                 a.button(href="/api/logout") 登出
+        div.ui.middle.aligned.center.aligned.grid
+            div.center.aligned.column
+                div.ui.center.aligned.icon.header
+                    i.user.grey.icon
+                - if (error)
+                    div.ui.big.negative.message 只能够访问自己的数据
+                div.ui.large.raised.blue.segments
+                    div.ui.segment
+                        h2.ui.header
+                            i.user.icon
+                            div.content 用户名
+                        p.user-content #{user.name}
+                    div.ui.segment
+                        h2.ui.header
+                            i.book.icon
+                            div.content 学号
+                        p.user-content #{user.id}
+                    div.ui.segment
+                        h2.ui.header
+                            i.tablet.icon
+                            div.content 电话
+                        p.user-content #{user.phone}
+                    div.ui.segment
+                        h2.ui.header
+                            i.mail.icon
+                            div.content 邮箱
+                        p.user-content #{user.mail}
+                    div.ui.segment
+                        a.ui.fluid.big.teal.button(href="/api/logout") 登出
