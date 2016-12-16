@@ -34,7 +34,7 @@ body
             h2.ui.center.aligned.icon.header
                 i.users.grey.icon
             form.ui.form#login(action="/api/login" method="POST" enctype="application/json")
-                div.ui.large.raised.dimmable.segment
+                div.ui.large.raised.segment
                     div.ui.field
                         div.ui.left.icon.huge.input
                             i.user.icon
@@ -45,10 +45,10 @@ body
                             input(type="password" name="password" placeholder="密码" maxlength="18")
                     div.ui.divider
                     div.ui.field
-                        input.ui.huge.blue.fluid.submit.button(type="submit" value="登录")
+                        button.ui.huge.blue.fluid.button#login-button 登录
                     div.field
                         a.ui.huge.fluid.teal.button(href="./regist") 注册
                     a.ui.basic.icon.button(href="https://github.com/MegrezZhu")
-                        i.ui.big.github.icon
-                    div.ui.simple.inverted.dimmer
+                        i.ui.large.github.icon
+                    //div.ui.simple.inverted.dimmer
                         div.ui.big.text.loader Loading
