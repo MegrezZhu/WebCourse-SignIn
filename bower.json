@@ -1,0 +1,23 @@
+{
+  "name": "WebCourse-Signin",
+  "description": "",
+  "main": "",
+  "authors": [
+    "MegrezZhu <mystery490815101@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/MegrezZhu/WebCourse-SignIn",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "lodash": "^4.17.2",
+    "semantic": "^2.2.6",
+    "cryptojs": "*"
+  }
+}
