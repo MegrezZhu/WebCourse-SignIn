@@ -8,17 +8,17 @@ let users = require('../model/users');
 /* GET home page. */
 router
     .use(function (req, res, next) {
-        if (req.cookies.error === 'true') {
+        if (req.session.error === true) {
             res.locals.error = true;
+            req.session.error = false;
         }
-        res.clearCookie('error');
         next();
     })
     .get('/', function (req, res, next) {
         if (!!res.locals.user) {
             if (!!req.query.username) {
                 if (res.locals.user.name !== req.query.username) {
-                    res.cookie('error', 'true');
+                    req.session.error = true;
                     res.redirect(`/?username=${res.locals.user.name}`);
                 } else
                     res.render('detail');
@@ -33,7 +33,3 @@ router
     });
 
 module.exports = router;
-
-function hasCookie(req) {
-    return req.cookies && req.cookies.name && req.cookies.session;
-}
