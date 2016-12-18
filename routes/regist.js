@@ -18,10 +18,9 @@ router
                    } else
                        return Promise.reject(new Error('invalid data!'));
                })
-               .then(function (session) {
-                   res.cookie('name', req.body.name, {maxAge: 86400000})
-                      .cookie('session', session, {maxAge: 86400000})
-                      .redirect(`/?username=${req.body.name}`);
+               .then(function () {
+                   req.session.name = req.body.name;
+                   res.redirect(`/?username=${req.body.name}`);
                })
                .catch(err => next(err));
     });

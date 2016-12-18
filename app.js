@@ -2,8 +2,11 @@ let express = require('express');
 let path = require('path');
 let favicon = require('serve-favicon');
 let logger = require('morgan');
-let cookieParser = require('cookie-parser');
+let session = require('express-session');
+let MongoStore = require('connect-mongo')(session);
 let bodyParser = require('body-parser');
+
+let users = require('./model/users');
 
 let autoLogin = require('./routes/autoLogin');
 let index = require('./routes/index');
@@ -23,9 +26,17 @@ app.use(favicon(path.join(__dirname, 'public', 'img', 'favicon.jpg')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({
+    secret: 'WebCoure SignIn',
+    cookie: {
+        maxAge: 86400000
+    },
+    name: 'sid',
+    store: new MongoStore({ url: `mongodb://root:toor@www.megrez-says-hi.cn:27017/signin?authSource=admin`})
+}));
 app.use(autoLogin);
 
 app.use('/', index);

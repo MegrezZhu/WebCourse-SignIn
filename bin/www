@@ -1,6 +1,6 @@
-let app = require('../app');
 let http = require('http');
 let userList = require('../model/users');
+let app = require('../app');
 
 let port;
 
@@ -10,10 +10,8 @@ userList
     .connect()
     .then(function () {
         console.log('...done');
-
         port = process.env.PORT || 3000;
         app.set('port', port);
-
         app.listen(port, function (err) {
             if (err) onError(err);
             else onListening();

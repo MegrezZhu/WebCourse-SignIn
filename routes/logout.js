@@ -4,10 +4,9 @@ let express = require('express');
 let router = express.Router();
 
 router
-    .get('/', function (req, res, next) {
-        res.clearCookie('name')
-           .clearCookie('session')
-           .redirect('/');
+    .get('/', function (req, res) {
+        req.session.destroy();
+        res.redirect('/');
     });
 
 module.exports = router;
