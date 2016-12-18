@@ -4,12 +4,9 @@ let app = require('../app');
 
 let port;
 
-console.log('connecting to database.');
-
 userList
     .connect()
     .then(function () {
-        console.log('...done');
         port = process.env.PORT || 3000;
         app.set('port', port);
         app.listen(port, function (err) {

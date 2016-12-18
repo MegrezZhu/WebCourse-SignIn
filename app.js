@@ -6,7 +6,7 @@ let session = require('express-session');
 let MongoStore = require('connect-mongo')(session);
 let bodyParser = require('body-parser');
 
-let users = require('./model/users');
+let mongoUrl = require('./model/mongoInfo').url;
 
 let autoLogin = require('./routes/autoLogin');
 let index = require('./routes/index');
@@ -35,7 +35,9 @@ app.use(session({
         maxAge: 86400000
     },
     name: 'sid',
-    store: new MongoStore({ url: `mongodb://root:toor@www.megrez-says-hi.cn:27017/signin?authSource=admin`})
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ url: mongoUrl})
 }));
 app.use(autoLogin);
 

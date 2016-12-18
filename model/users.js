@@ -3,6 +3,7 @@
 let mongodb = require('mongodb');
 let secure = require('./secure');
 let client = mongodb.MongoClient;
+let serverUrl = require('./mongoInfo').url;
 
 class User {
     constructor(name, password, id, phone, mail) {
@@ -15,12 +16,6 @@ class User {
     }
 }
 
-const host = 'www.megrez-says-hi.cn';
-const port = 27017;
-const dbName = 'signin';
-const username = 'root';
-const pw = 'toor';
-
 const userList = new class {
     constructor() {
         this.db = null;
@@ -29,9 +24,11 @@ const userList = new class {
 
     connect() {
         let that = this;
+        console.log(`connecting to: ${serverUrl}`);
         return client
-            .connect(`mongodb://${username}:${pw}@${host}:${port}/${dbName}?authSource=admin`)
+            .connect(serverUrl)
             .then(function (db) {
+                console.log('...done');
                 that.db = db;
                 that.users = db.collection('users');
             });
