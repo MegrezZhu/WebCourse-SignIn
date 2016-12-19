@@ -31,13 +31,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
     secret: 'WebCoure SignIn',
-    cookie: {
-        maxAge: 86400000
-    },
+    cookie: {maxAge: 86400000},
     name: 'sid',
     resave: false,
     saveUninitialized: false,
-    store: new MongoStore({ url: mongoUrl})
+    store: new MongoStore({url: mongoUrl})
 }));
 app.use(autoLogin);
 

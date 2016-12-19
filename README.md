@@ -2,7 +2,8 @@
 Just an assignment.
 ---
 ### Launch
-1. install dependencies `npm install`
+0. `bower` needed, please`npm install -g bower`before next step.
+1. install dependencies `npm install` and `bower install`
 2. launch `npm start` or `npm run remote`(which use remote MongoDB)
 
 ### Note:
