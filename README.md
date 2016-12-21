@@ -5,6 +5,7 @@ Just an assignment.
 0. `bower` needed, please`npm install -g bower`before next step.
 1. install dependencies `npm install` and `bower install`
 2. launch `npm start` or `npm run remote`(which use remote MongoDB)
+3. `localhost:8000`
 
 ### Note:
 * By default`npm start`, the server connects to a local MongoDB on `localhost:27017`.
